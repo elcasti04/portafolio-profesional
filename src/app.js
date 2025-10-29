@@ -17,7 +17,10 @@ app.set("view engine", "ejs");
 app.use(expressLayouts);
 
 // 🔧 ESTA ES LA RUTA CORRECTA
-app.set("views", path.join(__dirname, "views"));
+app.set("views", path.join(__dirname, "../views"));
+
+
+
 
 app.set("port", process.env.PORT || 3000);
 
