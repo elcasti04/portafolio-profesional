@@ -14,9 +14,9 @@ app.set('view engine', 'ejs');
 
 app.use(expressLayouts);
 
-app.set('views', path.join(__dirname, 'views'));
+app.set("views", path.join(process.cwd(), "src", "views"));
+app.use(express.static(path.join(process.cwd(), "public")));
 
-app.use(express.static(path.join(process.cwd(), 'public')));
 
 app.set('port', process.env.PORT || 3000);
 
