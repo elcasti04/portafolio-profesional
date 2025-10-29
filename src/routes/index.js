@@ -6,15 +6,15 @@ router.get('/', (req, res) => {
     res.render('inicio');
 })
 router.get('/about', (req, res) => {
-    res.render('about.ejs');
+    res.render('about');
 })
 router.get('/projects', (req, res)=> {
-    res.render('projects.ejs')
+    res.render('projects')
 })
 router.get('/skills', (req, res) => {
-    res.render('skills.ejs')
+    res.render('skills')
 })
 router.get('/contact', (req, res) =>{
-    res.render('contact.ejs')
+    res.render('contact')
 })
 export default router; 

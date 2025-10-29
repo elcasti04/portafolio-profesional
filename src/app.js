@@ -9,22 +9,20 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Archivos estáticos (desde /public)
+// === Archivos estáticos (carpeta public) ===
 app.use(express.static(path.join(__dirname, "../public")));
 
-// Configuración de vistas
+// === Configuración del motor de vistas ===
 app.set("view engine", "ejs");
 app.use(expressLayouts);
 
-// 🔧 ESTA ES LA RUTA CORRECTA
-app.set("views", path.join(__dirname, "../views"));
+// Ruta correcta de vistas (dentro de src/views)
+app.set("views", path.join(__dirname, "views"));
 
-
-
-
+// === Puerto del servidor ===
 app.set("port", process.env.PORT || 3000);
 
-// Ruta para descargar CV
+// === Ruta para descargar el CV ===
 app.get("/descargar-cv", (req, res) => {
   const filePath = path.join(
     __dirname,
@@ -38,6 +36,12 @@ app.get("/descargar-cv", (req, res) => {
   });
 });
 
+// === Rutas principales ===
 app.use("/", routes);
+
+// === Manejo de errores 404 ===
+app.use((req, res) => {
+  res.status(404).render("404", { title: "Página no encontrada" });
+});
 
 export default app;
