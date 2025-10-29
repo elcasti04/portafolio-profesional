@@ -19,6 +19,7 @@ app.use(expressLayouts);
 // Ruta correcta de vistas (dentro de src/views)
 app.set("views", path.join(__dirname, "views"));
 
+
 // === Puerto del servidor ===
 app.set("port", process.env.PORT || 3000);
 
