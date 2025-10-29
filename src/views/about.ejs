@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Acerca de mí</h1>
+
+    <section id="acerca-de-mi">
+    <div>
+      <h2>Descripción</h2>
+      <p id="descripcion-general">
+        Desarrollador web en formación y estudiante de Ingeniería de Software, con conocimientos en HTML, CSS, JavaScript y React. Me interesa aprender nuevas tecnologías y participar en proyectos que impulsen mi crecimiento profesional y contribuyan con soluciones innovadoras.
+      </p>
+      <button id="descargar-cv">Descargar CV</button>
+      <br>
+
+      <p id="valores-list">“Primero resuelve el problema, después escribe el código”</p>
+
+      <h3>Motivación</h3>
+      <p id="descripcion-general">
+        Saber que tu trabajo es valorado, recibir comentarios positivos y ver tu código implementado en proyectos reales genera una gran satisfacción y motivación para seguir mejorando cada día.
+      </p>
+      <h3>Formación</h3>
+      <ul>
+        <li id="valores-list">
+          Estudiante de Ingeniería de Software en la Universidad de Cartagena.
+        </li>
+        <li id="valores-list">
+          Desarrollador Web formado en Academlo como Desarrollador Full Stack.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <script>
+    document.getElementById('descargar-cv').addEventListener('click', () => {
+      window.location.href = '/descargar-cv';
+    });
+  </script>
+
+</body>
+</html>
