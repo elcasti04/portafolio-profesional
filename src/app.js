@@ -9,26 +9,18 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// === Archivos estáticos (carpeta public) ===
+// Archivos estáticos
 app.use(express.static(path.join(__dirname, "../public")));
 
-// === Configuración del motor de vistas ===
+// Configuración del motor de vistas
 app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 app.use(expressLayouts);
 
-// Ruta correcta de vistas (dentro de src/views)
-app.set("views", path.join(__dirname, "views"));
-console.log(app.set("views", path.join(__dirname, "views")))
-
-
-// === Puerto del servidor ===
+// Puerto
 app.set("port", process.env.PORT || 3000);
 
-app.get('/', (req, res) => {
-  res.render('index'); // Asegúrate de tener /src/views/index.ejs
-});
-
-// === Ruta para descargar el CV ===
+// Ruta para descargar CV
 app.get("/descargar-cv", (req, res) => {
   const filePath = path.join(
     __dirname,
@@ -42,17 +34,13 @@ app.get("/descargar-cv", (req, res) => {
   });
 });
 
-// === Rutas principales ===
+// Rutas principales
 app.use("/", routes);
 
-// === Manejo de errores 404 ===
-app.use((req, res) => {
-  res.status(404).render("404", { title: "Página no encontrada" });
-});
+// Middleware para capturar errores (opcional pero útil)
 app.use((err, req, res, next) => {
-  console.error("Error interno:", err);
+  console.error("❌ Error:", err.stack);
   res.status(500).send("Error interno del servidor 😥");
 });
-
 
 export default app;
