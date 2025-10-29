@@ -13,9 +13,11 @@ const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, "../public")));
 
 // Configuración del motor de vistas
-app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
 app.use(expressLayouts);
+app.set("layout", "layout"); // nombre del layout principal
+
 
 // Puerto
 app.set("port", process.env.PORT || 3000);
@@ -41,6 +43,13 @@ app.use("/", routes);
 app.use((err, req, res, next) => {
   console.error("❌ Error:", err.stack);
   res.status(500).send("Error interno del servidor 😥");
+});
+
+// Manejador general de errores de vista
+app.use((err, req, res, next) => {
+  console.error("❌ ERROR DETALLADO:");
+  console.error(err);
+  res.status(500).send(`Error interno del servidor 😥 <br> ${err.message}`);
 });
 
 export default app;
