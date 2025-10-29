@@ -2,6 +2,12 @@ import { Router } from 'express';
 
 const router = Router();
 
+router.use((req, res, next) => {
+  console.log("Ruta solicitada:", req.path);
+  next();
+});
+
+
 router.get('/', (req, res) => {
     res.render('inicio');
 })

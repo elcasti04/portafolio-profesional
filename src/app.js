@@ -18,10 +18,15 @@ app.use(expressLayouts);
 
 // Ruta correcta de vistas (dentro de src/views)
 app.set("views", path.join(__dirname, "views"));
+console.log(app.set("views", path.join(__dirname, "views")))
 
 
 // === Puerto del servidor ===
 app.set("port", process.env.PORT || 3000);
+
+app.get('/', (req, res) => {
+  res.render('index'); // Asegúrate de tener /src/views/index.ejs
+});
 
 // === Ruta para descargar el CV ===
 app.get("/descargar-cv", (req, res) => {
@@ -44,5 +49,10 @@ app.use("/", routes);
 app.use((req, res) => {
   res.status(404).render("404", { title: "Página no encontrada" });
 });
+app.use((err, req, res, next) => {
+  console.error("Error interno:", err);
+  res.status(500).send("Error interno del servidor 😥");
+});
+
 
 export default app;
